@@ -1,0 +1,42 @@
+
+1. Power Distribution (Assuming a 5V BEC from an ESC or PDB)
+
+5V Source ➔ ESP32-S3 5V pin
+
+5V Source ➔ FlySky Receiver VCC (or 5V) pin
+
+Main Ground ➔ ESP32-S3 GND pin
+
+Main Ground ➔ FlySky Receiver GND pin
+
+Main Ground ➔ MPU6500 GND pin
+
+Main Ground ➔ All 4 ESC GND pins (signal ground)
+
+2. MPU-6500 Sensor (I2C Connection)
+
+MPU6500 VCC ➔ ESP32-S3 3.3V pin (Important: Use 3.3V, not 5V, to prevent damage)
+
+MPU6500 GND ➔ ESP32-S3 GND pin
+
+MPU6500 SCL ➔ ESP32-S3 SCL pin (Typically GPIO 9 on the SuperMini, or your defined I2C SCL)
+
+MPU6500 SDA ➔ ESP32-S3 SDA pin (Typically GPIO 8 on the SuperMini, or your defined I2C SDA)
+
+3. Motors / ESC Signals (Based on your configuration parameters)
+
+ESC 1 Signal ➔ ESP32-S3 GPIO 1 (from set pin_output_0 1)
+
+ESC 2 Signal ➔ ESP32-S3 GPIO 2 (from set pin_output_1 2)
+
+ESC 3 Signal ➔ ESP32-S3 GPIO 10 (from set pin_output_2 10)
+
+ESC 4 Signal ➔ ESP32-S3 GPIO 13 (from set pin_output_3 13)
+
+4. FlySky Receiver (3-Pin PWM protocal)
+
+Receiver VCC ➔ 5V Source
+
+Receiver GND ➔ Main Ground
+
+Receiver Signal ➔ gpio 12 
