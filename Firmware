@@ -1,0 +1,101 @@
+go to https://github.com/rtlopez/esp-fc
+
+in the above repository flash the bin file based on the dev board you are using. install Betaflight Configurator (v10.10) CH340 usb-serial converter driver on your PC 
+
+and connect to usb to esp32 s3 and turn off auto connect and go on to top and connect as per your ports to esp32 s3 
+
+1. Hardware Pin Mapping
+
+Open the Betaflight Configurator and connect the board.
+
+Navigate directly to the CLI tab.
+
+type get output on the command block and you will get current pinouts which are default. or you can just use the below as for your convinience 
+
+set mixer_output_limit 100
+set output_motor_protocol PWM
+set output_motor_async 0
+set output_motor_rate 480
+set output_motor_poles 14
+set output_servo_rate 0
+set output_min_command 1000
+set output_min_throttle 1070
+set output_max_throttle 1940
+set output_dshot_idle 550
+set output_dshot_telemetry 0
+set output_0 M N 1000 1500 2000
+set output_1 M N 1000 1500 2000
+set output_2 M N 1000 1500 2000
+set output_3 M N 1000 1500 2000
+set pin_output_0 1
+set pin_output_1 2
+set pin_output_2 10
+set pin_output_3 13
+set mix_outputs -1
+
+after that do not navigate to any other tabs. save and unplug esp32 and plug in again for power cycle. make sure to absolutely correct about pinouts. other wise the fc wont work
+
+and if mpu6500 doesnt work at beginning. just reverse the pinout in CLI or check soldering 
+
+
+2. Sensor Alignment & Calibration
+The MPU6500 mounted on the modular perfboard setup will likely have an incorrect default orientation.  
+
+Navigate to the Setup tab.
+
+Physically rotate the drone frame. The 3D model on the screen must perfectly mirror the physical Pitch, Roll, and Yaw movements.
+
+If the movement is misaligned, navigate to the Configuration tab and locate the Board and Sensor Alignment section.  
+
+Adjust the First Gyro orientation (e.g., CW 90°, CW 270°, or modifying Roll/Pitch degrees) until the 3D model accurately reflects the physical 250mm frame.  
+
+Place the drone on a completely flat surface and click Calibrate Accelerometer.
+
+
+
+3. Receiver Setup
+To establish communication between the FlySky FS-i6 and the ESP32-S3 SuperMini:
+
+Navigate to the Ports tab.
+
+Enable Serial RX for the specific UART port wired to the receiver's signal pin. Click Save and Reboot.  
+
+Navigate to the Receiver tab.
+
+Change the Receiver Mode to Serial-Based Receiver.  
+
+Change the Serial Receiver Provider to IBUS. Click Save.  
+
+Power on the transmitter and verify the channel bars respond correctly to stick inputs.
+
+4. Motor Calibration & Direction
+The SimonK 30A ESCs utilizing the standard PWM protocol instead of a digital protocol like DShot, require a manual throttle range calibration so all A2212 motors start simultaneously.
+Safety Warning: Strictly ensure all propellers are removed before proceeding.  
+
+Unplug the LiPo battery. Keep the USB connected.
+
+Navigate to the Motors tab.
+
+Toggle the "I understand the risks" switch.  
+
+Drag the Master Slider to the absolute maximum position (usually 2000).  
+
+Plug in the LiPo battery. The ESCs will emit a musical tone or series of beeps, registering the high throttle mark.  
+
+Immediately drag the Master Slider back down to the minimum position (usually 1000).  
+
+The ESCs will beep again, confirming the low throttle mark is set and calibration is complete.  
+
+Slowly raise each motor slider individually to verify the motors are spinning in the exact direction indicated by the diagram in Betaflight. If a motor spins backward, swap any two of the three wires connecting that specific motor to its ESC.  
+
+5. Flight Modes
+Navigate to the Modes tab.
+
+Assign the ARM mode to a designated two-position switch on the transmitter.  
+
+Assign the ANGLE mode (self-leveling) to an additional switch. Utilizing ANGLE mode is critical for stabilizing initial test flights.
+
+6. PID parameters : 
+
+check the PID tuning picture for it 
+
