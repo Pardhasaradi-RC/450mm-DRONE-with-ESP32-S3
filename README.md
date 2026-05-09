@@ -1,3 +1,5 @@
+<img width="900" height="1600" alt="flight controller" src="https://github.com/user-attachments/assets/f297a5a8-41a5-4493-a7fa-090a312547ef" />
+
 The DIY Flight Controller
 To keep things modular, I built the flight controller from scratch on a standard 36x36mm perfboard. The brain of the operation is an ESP32-S3 SuperMini, paired up with an MPU6500 gyroscope to keep the flight dynamics smooth.
 
