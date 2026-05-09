@@ -43,3 +43,6 @@ Additional: ( not optional )
  6. zip ties
  7. insulation tape 
 
+DISCLAIMER : 
+
+mount components as firmly as possible. dont do any loose connection especially nails on frame. loose nails going to make you loose the nails which are almost impossible to find. so becarefull how you mount components. do not expose battery to outside. and do not place it above or below the frame. it might cought fire on accidental drops .be carefull with battery and motor propellers. they do serious damage. and only fly over a open field with no people around. be carefull and enjoy 
